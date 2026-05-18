@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garden Tracker</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f5f0e8;
+      color: #2d3a2d;
+      font-family: Georgia, 'Times New Roman', serif;
+      min-height: 100vh;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    header {
+      max-width: 1800px;
+      margin: 0 auto 2rem;
+      border-bottom: 2px solid #4a6741;
+      padding-bottom: 1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      letter-spacing: 0.04em;
+      color: #4a6741;
+    }
+
+    h1 span {
+      font-size: 1rem;
+      color: #7a9470;
+      font-style: italic;
+    }
+
+    .search-wrap { margin-left: auto; }
+
+    #search {
+      background: #f5f0e8;
+      border: 1px solid #b5c8a8;
+      border-radius: 3px;
+      padding: 0.4rem 0.8rem;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      color: #2d3a2d;
+      width: 220px;
+      outline: none;
+    }
+
+    #search:focus { border-color: #4a6741; }
+
+    /* ── Style Principles ── */
+    .principles {
+      max-width: 1800px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(135deg, #e8f0e0 0%, #f5f0e8 100%);
+      border-left: 5px solid #4a6741;
+      padding: 1.1rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+    }
+    .principles h2 {
+      color: #4a6741;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: normal;
+      margin-bottom: 0.45rem;
+    }
+    .principles p {
+      color: #3a4a3a;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ── Bed Plans ── */
+    .bed-plans {
+      max-width: 1800px;
+      margin: 0 auto 2.5rem;
+    }
+    .bed-plans > h2 {
+      color: #4a6741;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: normal;
+      margin-bottom: 0.3rem;
+    }
+    .bed-plans .plan-note {
+      font-size: 0.78rem;
+      color: #8a9a80;
+      font-style: italic;
+      margin-bottom: 1.25rem;
+    }
+    .beds-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .bed-card {
+      background: #f0ece0;
+      border: 1px solid #c8d5b9;
+      border-radius: 6px;
+      padding: 1rem 1rem 0.75rem;
+    }
+    .bed-card h3 {
+      color: #4a6741;
+      font-size: 0.78rem;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 0.6rem;
+    }
+    .bed-svg { width: 100%; height: auto; display: block; }
+    .bed-legend {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      color: #3a4a3a;
+    }
+    .bed-legend table { width: 100%; border-collapse: collapse; }
+    .bed-legend td { padding: 0.12rem 0.3rem; vertical-align: middle; line-height: 1.3; }
+    .bed-legend .sw {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid rgba(0,0,0,0.18);
+      vertical-align: middle;
+    }
+    .bed-legend .lz { font-size: 0.62rem; color: #8a9a80; }
+    .bed-legend .autumn-note { font-size: 0.65rem; color: #9a6a30; font-style: italic; }
+
+    hr.section-div {
+      max-width: 1800px;
+      margin: 0 auto 2rem;
+      border: none;
+      border-top: 1px solid #c8d5b9;
+    }
+
+    .table-wrap {
+      max-width: 1800px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    thead th {
+      background: #4a6741;
+      color: #f5f0e8;
+      font-weight: normal;
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.7rem 0.65rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    thead th[data-col] { cursor: pointer; user-select: none; }
+    thead th[data-col]:hover { background: #3d5636; }
+    thead th.sorted-asc::after  { content: " ▲"; font-size: 0.6rem; }
+    thead th.sorted-desc::after { content: " ▼"; font-size: 0.6rem; }
+
+    tbody tr {
+      border-bottom: 1px solid #d9e4cf;
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: #ede8df; }
+    tbody tr.hidden { display: none; }
+
+    td {
+      padding: 0.45rem 0.65rem;
+      font-size: 0.83rem;
+      vertical-align: top;
+    }
+
+    td.photo {
+      padding: 0.4rem 0.4rem 0.4rem 0.65rem;
+      width: 1px;
+      vertical-align: middle;
+    }
+
+    .photo-strip { display: flex; gap: 4px; }
+
+    .photo-strip a {
+      display: block;
+      width: 65px;
+      height: 65px;
+      overflow: hidden;
+      border-radius: 3px;
+      border: 1px solid #c8d5b9;
+      flex-shrink: 0;
+    }
+
+    .photo-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+
+    .photo-strip a:hover img { transform: scale(1.1); }
+
+    td.common-name { font-weight: bold; white-space: nowrap; vertical-align: middle; }
+    td.scientific-name { font-style: italic; color: #4a6741; white-space: nowrap; vertical-align: middle; }
+    td.cultivar { color: #6a7a5a; vertical-align: middle; }
+
+    td.seed-code { vertical-align: middle; }
+    td.seed-code a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: #7a6a4a;
+      text-decoration: none;
+      border-bottom: 1px dotted #b5a890;
+      white-space: nowrap;
+    }
+    td.seed-code a:hover { color: #4a6741; border-bottom-color: #4a6741; }
+
+    td.count { text-align: center; vertical-align: middle; }
+
+    td.size { font-size: 0.78rem; color: #4a5a4a; vertical-align: middle; }
+    td.mature { font-size: 0.8rem; color: #4a5a4a; white-space: nowrap; vertical-align: middle; }
+    td.timeline { font-size: 0.78rem; color: #4a5a4a; }
+    td.plant-size { font-size: 0.78rem; color: #4a5a4a; min-width: 160px; }
+
+    td.border-pos {
+      font-size: 0.78rem;
+      color: #3a4a3a;
+      min-width: 200px;
+      max-width: 260px;
+    }
+
+    td.border-pos .pos-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: #e0e8d8;
+      color: #3d5636;
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    td.companions {
+      font-size: 0.76rem;
+      color: #3a4a3a;
+      min-width: 200px;
+      max-width: 280px;
+    }
+
+    td.companions ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    td.companions ul li {
+      padding: 0.12rem 0;
+      border-bottom: 1px dotted #d9e4cf;
+      line-height: 1.35;
+    }
+
+    td.companions ul li:last-child { border-bottom: none; }
+
+    td.companions .cn { font-style: italic; color: #4a6741; }
+    td.companions .cr { color: #7a8a7a; font-size: 0.72rem; }
+
+    .count-badge {
+      display: inline-block;
+      background: #c8d5b9;
+      color: #2d3a2d;
+      border-radius: 12px;
+      padding: 0.12rem 0.5rem;
+      font-size: 0.82rem;
+      min-width: 1.9rem;
+      text-align: center;
+    }
+
+    .size-pill {
+      display: inline-block;
+      border: 1px solid #b5c8a8;
+      border-radius: 3px;
+      padding: 0.08rem 0.4rem;
+      font-size: 0.75rem;
+      color: #5a6a5a;
+      white-space: nowrap;
+    }
+
+    .ready {
+      display: inline-block;
+      border-radius: 3px;
+      padding: 0.18rem 0.5rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      font-family: Georgia, serif;
+    }
+
+    .ready-now    { background: #4a6741; color: #f5f0e8; }
+    .ready-urgent { background: #c0392b; color: #fff; }
+    .ready-weeks  { background: #d4a843; color: #2d2000; }
+    .ready-later  { background: #7a9ab0; color: #fff; }
+
+    .warn {
+      display: block;
+      font-size: 0.7rem;
+      color: #c0392b;
+      margin-top: 0.2rem;
+      font-style: italic;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: #7a9470;
+      font-style: italic;
+      display: none;
+    }
+
+    footer {
+      max-width: 1800px;
+      margin: 2rem auto 0;
+      font-size: 0.78rem;
+      color: #9aaa8a;
+      font-style: italic;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Garden Tracker <span>Chiltern Seeds, 2026</span></h1>
+  <div class="search-wrap">
+    <input type="search" id="search" placeholder="Search plants…" autocomplete="off">
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     GUIDING PRINCIPLES OF STYLE
+     ═══════════════════════════════════════════════ -->
+<section class="principles">
+  <h2>Guiding Principles of Style</h2>
+  <p>Natural, semi-wild, English country garden. Lots of whites and greens; smatterings of purple; dots of yellow and orange. Not too many reds. Plants should feel as though they have arrived of their own accord — in loose drifts and self-seeded colonies rather than regimented rows. Repetition of key plants across beds creates rhythm without uniformity.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CIRCULAR BED PLANS — 3m diameter around fruit trees
+     ═══════════════════════════════════════════════ -->
+<section class="bed-plans">
+  <h2>Circular Bed Plans</h2>
+  <p class="plan-note">Each bed 3m diameter · dwarf fruit tree at centre · border runs along top (north) edge · beds viewed from south (bottom) · dashed outlines = autumn 2026 planting · 1m ≈ 87px</p>
+
+  <div class="beds-grid">
+
+    <!-- ─── BED 1: White Drift & Purple Haze ─── -->
+    <div class="bed-card">
+      <h3>Bed 1 — White Drift &amp; Purple Haze <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Cherry)</span></h3>
+      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+        <defs>
+          <clipPath id="c1"><circle cx="150" cy="148" r="130"/></clipPath>
+        </defs>
+        <!-- border label -->
+        <text x="150" y="11" text-anchor="middle" font-size="8" fill="#7a8a70" font-family="Georgia,serif" letter-spacing="2">— — — BORDER — — —</text>
+        <!-- bed soil -->
+        <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
+        <!-- plant blobs, back → front -->
+        <g clip-path="url(#c1)">
+          <!-- Foxglove snow (WH) back cluster -->
+          <ellipse cx="125" cy="38" rx="23" ry="18" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse cx="166" cy="26" rx="16" ry="13" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse cx="197" cy="43" rx="19" ry="15" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <!-- Hyssop giant yellow (HY) back sides -->
+          <ellipse cx="67" cy="78" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <ellipse cx="233" cy="80" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <!-- Bishops flowers (BF) mid-back, airy -->
+          <ellipse cx="100" cy="93" rx="16" ry="13" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse cx="173" cy="80" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse cx="211" cy="98" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <!-- Toadflax purple (TP) mid sides + scatter -->
+          <ellipse cx="61" cy="143" rx="14" ry="21" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse cx="241" cy="146" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse cx="88" cy="186" rx="12" ry="16" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <!-- Feverfew (FV) mid-front -->
+          <ellipse cx="115" cy="196" rx="17" ry="13" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <ellipse cx="196" cy="193" rx="14" ry="11" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <!-- Cape daisy (CD) front -->
+          <ellipse cx="83" cy="228" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="155" cy="249" rx="19" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="219" cy="226" rx="18" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <!-- Scabious (SC) front dots -->
+          <ellipse cx="148" cy="265" rx="11" ry="9" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
+        </g>
+        <!-- tree -->
+        <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
+        <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Cherry</text>
+        <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
+        <!-- labels outside blobs -->
+        <text x="125" y="38" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="166" y="26" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="197" y="43" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="67" y="78" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
+        <text x="233" y="80" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
+        <text x="100" y="93" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="173" y="80" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="211" y="98" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="61" y="143" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="241" y="146" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="88" y="186" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="115" y="196" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
+        <text x="196" y="193" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
+        <text x="83" y="228" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="155" y="249" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="219" y="226" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="148" y="265" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif">SC</text>
+        <!-- scale bar -->
+        <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
+        <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
+        <!-- viewing direction -->
+        <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
+      </svg>
+      <div class="bed-legend">
+        <table>
+          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×8 · back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
+          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×3 · mid-front</td></tr>
+          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×2 · front</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── BED 2: Golden Haze ─── -->
+    <div class="bed-card">
+      <h3>Bed 2 — Golden Haze <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Apple)</span></h3>
+      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+        <defs>
+          <clipPath id="c2"><circle cx="150" cy="148" r="130"/></clipPath>
+        </defs>
+        <text x="150" y="11" text-anchor="middle" font-size="8" fill="#7a8a70" font-family="Georgia,serif" letter-spacing="2">— — — BORDER — — —</text>
+        <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
+        <g clip-path="url(#c2)">
+          <!-- Foxglove snow (WH) back -->
+          <ellipse cx="118" cy="36" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse cx="182" cy="40" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <!-- Rudbeckia (RU) back right, golden -->
+          <ellipse cx="220" cy="65" rx="18" ry="15" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
+          <!-- Lupin clump (LU) mid-back left, prominent -->
+          <ellipse cx="112" cy="91" rx="29" ry="24" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
+          <!-- Bishops flowers (BF) mid-back scattered -->
+          <ellipse cx="180" cy="78" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse cx="218" cy="100" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse cx="80" cy="114" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <!-- Yarrow (YA) mid warm accent -->
+          <ellipse cx="70" cy="156" rx="18" ry="14" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <ellipse cx="230" cy="151" rx="16" ry="12" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <!-- Hyssop golden jubilee (HG) chartreuse foliage mid -->
+          <ellipse cx="91" cy="176" rx="18" ry="15" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <ellipse cx="207" cy="175" rx="16" ry="14" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <!-- Toadflax (TP) sides -->
+          <ellipse cx="63" cy="197" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse cx="239" cy="194" rx="10" ry="17" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <!-- Foxglove peach (FP) mid-front accent -->
+          <ellipse cx="118" cy="207" rx="20" ry="16" fill="rgba(226,160,108,0.78)" stroke="#b07858" stroke-width="1"/>
+          <ellipse cx="192" cy="210" rx="18" ry="14" fill="rgba(226,160,108,0.78)" stroke="#b07858" stroke-width="1"/>
+          <!-- Cape daisy (CD) front -->
+          <ellipse cx="80" cy="236" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="155" cy="253" rx="19" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="222" cy="233" rx="18" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+        </g>
+        <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
+        <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Apple</text>
+        <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
+        <text x="118" y="36" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="182" y="40" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="220" y="65" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">RU</text>
+        <text x="112" y="91" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif">LU</text>
+        <text x="180" y="78" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="218" y="100" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="80" y="114" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="70" y="156" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
+        <text x="230" y="151" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
+        <text x="91" y="176" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
+        <text x="207" y="175" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
+        <text x="63" y="197" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="239" y="194" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="118" y="207" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif">FP</text>
+        <text x="192" y="210" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif">FP</text>
+        <text x="80" y="236" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="155" y="253" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="222" y="233" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
+        <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
+        <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
+      </svg>
+      <div class="bed-legend">
+        <table>
+          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×2 · back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×4 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×4 · sides</td></tr>
+          <tr><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP)</td><td class="lz">×4 · mid-front</td></tr>
+          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── BED 3: Natural Meadow ─── -->
+    <div class="bed-card">
+      <h3>Bed 3 — Natural Meadow <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Pear)</span></h3>
+      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+        <defs>
+          <clipPath id="c3"><circle cx="150" cy="148" r="130"/></clipPath>
+        </defs>
+        <text x="150" y="11" text-anchor="middle" font-size="8" fill="#7a8a70" font-family="Georgia,serif" letter-spacing="2">— — — BORDER — — —</text>
+        <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
+        <g clip-path="url(#c3)">
+          <!-- HY back sides -->
+          <ellipse cx="87" cy="52" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <ellipse cx="215" cy="55" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <!-- Foxglove snow back centre -->
+          <ellipse cx="138" cy="30" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse cx="178" cy="38" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <!-- Lupin clump mid-back left (big asymmetric cluster) -->
+          <ellipse cx="107" cy="92" rx="29" ry="25" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
+          <!-- BF scattered mid-back -->
+          <ellipse cx="180" cy="79" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse cx="223" cy="104" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <!-- Yarrow mid warm -->
+          <ellipse cx="61" cy="141" rx="19" ry="14" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <ellipse cx="233" cy="136" rx="17" ry="12" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <!-- Woolly foxglove mid, dashed = autumn -->
+          <ellipse cx="162" cy="118" rx="15" ry="12" fill="rgba(208,190,136,0.7)" stroke="#a09060" stroke-width="1" stroke-dasharray="3,2"/>
+          <!-- Toadflax purple sides mid -->
+          <ellipse cx="69" cy="178" rx="13" ry="21" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse cx="232" cy="175" rx="11" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <!-- Feverfew mid-front -->
+          <ellipse cx="104" cy="202" rx="17" ry="13" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <ellipse cx="206" cy="200" rx="15" ry="12" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <!-- Cape daisy front -->
+          <ellipse cx="79" cy="238" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="150" cy="257" rx="21" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="221" cy="235" rx="19" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+        </g>
+        <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
+        <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Pear</text>
+        <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
+        <text x="87" y="52" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
+        <text x="215" y="55" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
+        <text x="138" y="30" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="178" y="38" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="107" y="92" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif">LU</text>
+        <text x="180" y="79" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="223" y="104" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="61" y="141" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
+        <text x="233" y="136" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
+        <text x="162" y="118" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a5030" font-family="Georgia,serif">WF</text>
+        <text x="69" y="178" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="232" y="175" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="104" y="202" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
+        <text x="206" y="200" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
+        <text x="79" y="238" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="150" y="257" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="221" y="235" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
+        <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
+        <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
+      </svg>
+      <div class="bed-legend">
+        <table>
+          <tr><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
+          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×5 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(208,190,136,0.85);border-color:#a09060"></span></td><td><em>Digitalis lanata</em> 'Café Crème' (WF) <span class="autumn-note">— plant autumn</span></td><td class="lz">×2 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
+          <tr><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×4 · mid-front</td></tr>
+          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×8 · front</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── BED 4: Peach & Cream at Dusk ─── -->
+    <div class="bed-card">
+      <h3>Bed 4 — Peach &amp; Cream at Dusk <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Plum)</span></h3>
+      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+        <defs>
+          <clipPath id="c4"><circle cx="150" cy="148" r="130"/></clipPath>
+        </defs>
+        <text x="150" y="11" text-anchor="middle" font-size="8" fill="#7a8a70" font-family="Georgia,serif" letter-spacing="2">— — — BORDER — — —</text>
+        <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
+        <g clip-path="url(#c4)">
+          <!-- WH back -->
+          <ellipse cx="120" cy="36" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse cx="186" cy="40" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <!-- Lupin clump back centre-left -->
+          <ellipse cx="150" cy="82" rx="29" ry="23" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
+          <!-- Rudbeckia back sides, golden warmth -->
+          <ellipse cx="71" cy="91" rx="19" ry="15" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
+          <ellipse cx="228" cy="93" rx="17" ry="13" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
+          <!-- BF mid scattered -->
+          <ellipse cx="84" cy="126" rx="16" ry="13" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse cx="221" cy="122" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <!-- HG chartreuse mid sides -->
+          <ellipse cx="74" cy="163" rx="17" ry="14" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <ellipse cx="229" cy="161" rx="15" ry="12" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <!-- FP peach foxglove, feature mid, asymmetric clusters -->
+          <ellipse cx="107" cy="169" rx="23" ry="19" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
+          <ellipse cx="197" cy="171" rx="23" ry="19" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
+          <ellipse cx="152" cy="197" rx="19" ry="15" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
+          <!-- TP toadflax sides front -->
+          <ellipse cx="71" cy="201" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse cx="233" cy="199" rx="10" ry="17" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <!-- SC scabious front dots -->
+          <ellipse cx="118" cy="232" rx="14" ry="11" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
+          <ellipse cx="193" cy="229" rx="12" ry="10" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
+          <!-- CD front -->
+          <ellipse cx="84" cy="249" rx="20" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="153" cy="261" rx="17" ry="13" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse cx="219" cy="246" rx="16" ry="12" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+        </g>
+        <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
+        <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Plum</text>
+        <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
+        <text x="120" y="36" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="186" y="40" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
+        <text x="150" y="82" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif">LU</text>
+        <text x="71" y="91" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">RU</text>
+        <text x="228" y="93" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">RU</text>
+        <text x="84" y="126" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="221" y="122" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
+        <text x="74" y="163" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
+        <text x="229" y="161" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
+        <text x="107" y="169" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#5a3020" font-family="Georgia,serif">FP</text>
+        <text x="197" y="171" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#5a3020" font-family="Georgia,serif">FP</text>
+        <text x="152" y="197" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif">FP</text>
+        <text x="71" y="201" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="233" y="199" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
+        <text x="118" y="232" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif">SC</text>
+        <text x="193" y="229" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif">SC</text>
+        <text x="84" y="249" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="153" y="261" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="219" y="246" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
+        <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
+        <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
+        <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
+      </svg>
+      <div class="bed-legend">
+        <table>
+          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×4 · mid-back</td></tr>
+          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×4 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid sides</td></tr>
+          <tr><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP) <strong>— feature</strong></td><td class="lz">×8 · mid</td></tr>
+          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
+          <tr><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×4 · front</td></tr>
+          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /beds-grid -->
+</section>
+
+<hr class="section-div">
+
+<div class="table-wrap">
+  <table id="plant-table">
+    <thead>
+      <tr>
+        <th>Photos</th>
+        <th data-col="1">Common name</th>
+        <th data-col="2">Scientific name</th>
+        <th data-col="3">Cultivar</th>
+        <th data-col="4">Code</th>
+        <th data-col="5" style="text-align:center">Count</th>
+        <th data-col="6">Current size</th>
+        <th data-col="7">Mature height</th>
+        <th data-col="8">Mature spread</th>
+        <th data-col="9">Sow → mature</th>
+        <th data-col="10">Plant-out size</th>
+        <th data-col="11">Bed readiness</th>
+        <th data-col="12">Border position</th>
+        <th data-col="13">Best companions</th>
+      </tr>
+    </thead>
+    <tbody id="plant-body">
+
+      <!-- Bishops flowers -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="Bishops flowers" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13449.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13449.jpg" alt="Bishops flowers" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13451.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13451.jpg" alt="Bishops flowers" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Bishops flowers</td>
+        <td class="scientific-name">Ammi majus</td>
+        <td class="cultivar"></td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_85C_ammi_majus_seeds" target="_blank">85C</a></td>
+        <td class="count"><span class="count-badge">27</span></td>
+        <td class="size"><span class="size-pill">1 foot (30cm)</span></td>
+        <td class="mature">90–140cm</td>
+        <td class="mature">30–50cm</td>
+        <td class="timeline">Hardy annual<br>12–16 wks to flower</td>
+        <td class="plant-size">First true leaf in deep individual pot; prefers direct sow</td>
+        <td>
+          <span class="ready ready-urgent">Plant out NOW</span>
+          <span class="warn">⚠ Taproot — handle with extreme care; do not disturb root ball</span>
+        </td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid or front</span>
+          Despite its height, the airy see-through umbels act as a living veil — can be placed forward. Support with pea sticks; plant in drifts.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Verbena bonariensis</span> <span class="cr">— purple umbels mirror airy structure</span></li>
+            <li><span class="cn">Cosmos bipinnatus</span> <span class="cr">— fine foliage &amp; daisy flowers complement lacy umbels</span></li>
+            <li><span class="cn">Rosa</span> <span class="cr">— white umbels thread through rose canes beautifully</span></li>
+            <li><span class="cn">Linaria purpurea 'Canon Went'</span> <span class="cr">— mauve spikes contrast with white flat umbels</span></li>
+            <li><span class="cn">Digitalis purpurea 'Snow Thimble'</span> <span class="cr">— white-on-white; spike vs. umbel form contrast</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Brown eyed Susan -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="Brown eyed Susan" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Brown eyed Susan</td>
+        <td class="scientific-name">Rudbeckia triloba</td>
+        <td class="cultivar"></td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_1130B_rudbeckia_triloba_seeds" target="_blank">1130b</a></td>
+        <td class="count"><span class="count-badge">12</span></td>
+        <td class="size"><span class="size-pill">1 inch (2.5cm)</span></td>
+        <td class="mature">90–150cm</td>
+        <td class="mature">45–75cm</td>
+        <td class="timeline">Biennial (best yr 2)<br>14–16 wks yr-1 annual</td>
+        <td class="plant-size">8–12cm, 2–4 true leaves, after last frost</td>
+        <td><span class="ready ready-weeks">~3 weeks (early Jun)</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid to back</span>
+          Best in generous drifts for impact; the mass of small golden daisies reads from a distance. Self-seeds to appear in new spots each year.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Echinacea purpurea</span> <span class="cr">— mauve-pink against golden yellow; classic late-summer pairing</span></li>
+            <li><span class="cn">Panicum virgatum 'Shenandoah'</span> <span class="cr">— red-flushed grass glows alongside the warm gold</span></li>
+            <li><span class="cn">Verbena bonariensis</span> <span class="cr">— tall airy purple mingles through at similar height</span></li>
+            <li><span class="cn">Salvia nemorosa</span> <span class="cr">— violet-blue spikes contrast the golden daisies strongly</span></li>
+            <li><span class="cn">Aster novi-belgii</span> <span class="cr">— mauve autumn asters continue the season as Rudbeckia fades</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Cape daisy -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="Cape daisy" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Cape daisy</td>
+        <td class="scientific-name">Arctotis fastuosa</td>
+        <td class="cultivar">White</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_120D_arctotis_fastuosa_white_seeds" target="_blank">120d</a></td>
+        <td class="count"><span class="count-badge">30</span></td>
+        <td class="size"><span class="size-pill">2 inch (5cm)</span></td>
+        <td class="mature">40–60cm</td>
+        <td class="mature">25–35cm</td>
+        <td class="timeline">Half-hardy annual<br>14–18 wks to flower</td>
+        <td class="plant-size">8–12cm, after all frost risk (late May)</td>
+        <td>
+          <span class="ready ready-weeks">~2 weeks (post-frost)</span>
+          <span class="warn">Frost tender — wait until late May</span>
+        </td>
+        <td class="border-pos">
+          <span class="pos-tag">Front</span>
+          Silver-lobed foliage is as striking as the flowers; bold textural edging plant. Full sun and free-draining soil essential — hot dry front of border.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Lavandula angustifolia</span> <span class="cr">— silver-grey foliage echoes Arctotis leaves; purple contrasts white flowers</span></li>
+            <li><span class="cn">Festuca glauca</span> <span class="cr">— steel-blue mounds echo the silver leaf tones</span></li>
+            <li><span class="cn">Salvia officinalis 'Purpurascens'</span> <span class="cr">— deep purple leaves create textural contrast; same dry conditions</span></li>
+            <li><span class="cn">Linaria purpurea 'Canon Went'</span> <span class="cr">— airy upright pink spikes above the spreading white daisy</span></li>
+            <li><span class="cn">Verbena bonariensis</span> <span class="cr">— tall transparent purple above the compact daisy without shading it</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Common yarrow -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="Common yarrow" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13183.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13183.jpg" alt="Common yarrow" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13185.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13185.jpg" alt="Common yarrow" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Common yarrow</td>
+        <td class="scientific-name">Achillea millefolium</td>
+        <td class="cultivar">Colorado</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_36K_achillea_millefolium_colorado_seeds" target="_blank">36k</a></td>
+        <td class="count"><span class="count-badge">15</span></td>
+        <td class="size"><span class="size-pill">1 inch (2.5cm)</span></td>
+        <td class="mature">55–65cm</td>
+        <td class="mature">40–50cm</td>
+        <td class="timeline">Hardy perennial<br>Flowers yr 1 (Mar start); 8–10 wks to transplant</td>
+        <td class="plant-size">8–12cm, roots fill pot</td>
+        <td><span class="ready ready-weeks">~3 weeks (early Jun)</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Front to mid</span>
+          Flat-topped flower heads are best seen from above — plant near the border edge. Drifts of 3–5 in full sun; prefers poor, well-drained soil.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Salvia nemorosa 'Caradonna'</span> <span class="cr">— deep violet spikes contrast flat yellow-red heads strongly</span></li>
+            <li><span class="cn">Echinacea purpurea</span> <span class="cr">— globe form contrasts flat head; overlapping midsummer bloom</span></li>
+            <li><span class="cn">Nepeta × faassenii</span> <span class="cr">— sprawling grey-blue softens the base; both drought-tolerant</span></li>
+            <li><span class="cn">Festuca glauca</span> <span class="cr">— steel-blue low mounds provide year-round textural contrast</span></li>
+            <li><span class="cn">Digitalis lanata 'Café Crème'</span> <span class="cr">— narrow vertical spike contrasts flat heads; tones harmonise</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Feverfew -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="Feverfew" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_5603.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_5603.jpg" alt="Feverfew" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Feverfew</td>
+        <td class="scientific-name">Tanacetum parthenium</td>
+        <td class="cultivar"></td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_1227A_tanacetum_parthenium_seeds" target="_blank">1227a</a></td>
+        <td class="count"><span class="count-badge">12</span></td>
+        <td class="size"><span class="size-pill">tiny (&lt;1cm)</span></td>
+        <td class="mature">45–70cm</td>
+        <td class="mature">30–45cm</td>
+        <td class="timeline">Short-lived perennial<br>Flowers yr 1; 13–19 wks from sow</td>
+        <td class="plant-size">10–15cm, after last frost; pinch tips at 10cm</td>
+        <td><span class="ready ready-weeks">~4–5 weeks (mid-Jun)</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid or front</span>
+          Bushy, aromatic, self-seeding — best allowed to naturalise and fill gaps; tolerates part shade. Stitch it through the border informally.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Rosa</span> <span class="cr">— aromatic foliage said to deter aphids; white daisies lift any rose colour</span></li>
+            <li><span class="cn">Geranium × magnificum</span> <span class="cr">— deeply cut foliage and blue-violet flowers complement the white daisies</span></li>
+            <li><span class="cn">Borage</span> <span class="cr">— blue star flowers alongside white daisies; both prolific self-seeders</span></li>
+            <li><span class="cn">Verbena bonariensis</span> <span class="cr">— tall airy purple rises over the bushy feverfew mound</span></li>
+            <li><span class="cn">Achillea millefolium 'Colorado'</span> <span class="cr">— similar ferny foliage texture; flat-headed warm yarrow contrasts in form</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Foxglove dottie peach -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="Foxglove dottie peach" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22492.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22492.jpg" alt="Foxglove dottie peach" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22496.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22496.jpg" alt="Foxglove dottie peach" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Foxglove dottie peach</td>
+        <td class="scientific-name">Digitalis purpurea</td>
+        <td class="cultivar">Dottie Peach</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_465X_digitalis_purpurea_dottie_peach_seeds" target="_blank">465X</a></td>
+        <td class="count"><span class="count-badge">17</span></td>
+        <td class="size"><span class="size-pill">4 inch (10cm)</span></td>
+        <td class="mature">40–75cm</td>
+        <td class="mature">25–35cm</td>
+        <td class="timeline">F1 annual (yr-1 flower)<br>20–24 wks from sow</td>
+        <td class="plant-size">10–15cm, good root ball, after last frost</td>
+        <td><span class="ready ready-now">Ready now</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Front to mid</span>
+          Compact for a foxglove — suits the front half of a border. Warm peach tones glow in evening light; best echoed by warm-coloured neighbours. Tolerates part shade.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Alchemilla mollis</span> <span class="cr">— chartreuse frothy flowers form a soft skirt around the spikes</span></li>
+            <li><span class="cn">Rosa 'Buff Beauty' / 'Olivia Rose'</span> <span class="cr">— apricot rose with peach foxglove is a classic cottage combination</span></li>
+            <li><span class="cn">Geranium 'Rozanne'</span> <span class="cr">— cool blue scrambling habit provides restful complement to warm peach</span></li>
+            <li><span class="cn">Stipa tenuissima</span> <span class="cr">— straw-coloured feather grass softens the base and echoes warm tones</span></li>
+            <li><span class="cn">Digitalis lanata 'Café Crème'</span> <span class="cr">— taller, slender woolly foxglove behind creates an elegant single-genus drift</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Foxglove snow -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="Foxglove snow" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Foxglove snow</td>
+        <td class="scientific-name">Digitalis purpurea</td>
+        <td class="cultivar">Snow Thimble</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_464L_digitalis_purpurea_snow_thimble_seeds" target="_blank">464L</a></td>
+        <td class="count"><span class="count-badge">35</span></td>
+        <td class="size"><span class="size-pill">3 inch (7.5cm)</span></td>
+        <td class="mature">90–120cm</td>
+        <td class="mature">30–60cm</td>
+        <td class="timeline">True biennial<br>Rosette yr 1; flowers yr 2</td>
+        <td class="plant-size">6–8+ true leaves, established rosette; plant out autumn</td>
+        <td><span class="ready ready-later">Beds: autumn 2026</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid to back</span>
+          Pure white illuminates shaded spots and acts as visual breathing space between rich colours. Self-seeds reliably — allow it to roam in a naturalistic border.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Geranium phaeum</span> <span class="cr">— dark maroon-black flowers below the white spikes: dramatic contrast</span></li>
+            <li><span class="cn">Astrantia major</span> <span class="cr">— intricate papery bracts complement white foxglove; both like part shade</span></li>
+            <li><span class="cn">Ammi majus</span> <span class="cr">— white on white; spike vs. umbel; cottage airy combination</span></li>
+            <li><span class="cn">Lupinus polyphyllus</span> <span class="cr">— deep blue or purple lupin spikes alongside white foxglove: bold early-summer drama</span></li>
+            <li><span class="cn">Digitalis purpurea 'Dottie Peach'</span> <span class="cr">— peach tones with white creates a warm-to-pale single-genus gradient</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Hyssop giant yellow -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="Hyssop giant yellow" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_20768.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_20768.jpg" alt="Hyssop giant yellow" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Hyssop giant yellow</td>
+        <td class="scientific-name">Agastache nepetoides</td>
+        <td class="cultivar"></td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_60N_agastache_nepetoides_seeds" target="_blank">60n</a></td>
+        <td class="count"><span class="count-badge">16</span></td>
+        <td class="size"><span class="size-pill">2 inch (5cm)</span></td>
+        <td class="mature">120–180cm</td>
+        <td class="mature">60–90cm</td>
+        <td class="timeline">Hardy perennial<br>Flowers reliably yr 2</td>
+        <td class="plant-size">2–3 true leaves, after last frost; space 50–60cm</td>
+        <td><span class="ready ready-weeks">~2–3 weeks (early Jun)</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Back</span>
+          At 120–180cm, firmly back of border. Narrow upright habit means groups of 3 don't take excessive space. Subtle greenish-yellow spikes work as see-through architectural backdrop.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Rudbeckia triloba</span> <span class="cr">— golden daisies in front pick up the yellow-green spikes above</span></li>
+            <li><span class="cn">Echinacea purpurea</span> <span class="cr">— classic prairie pairing; purple-pink coneflowers contrast yellow-green spikes</span></li>
+            <li><span class="cn">Verbena bonariensis</span> <span class="cr">— similarly tall and airy; purple weaves alongside at back of border</span></li>
+            <li><span class="cn">Salvia nemorosa</span> <span class="cr">— deep blue-violet massed in front creates graded height with strong contrast</span></li>
+            <li><span class="cn">Aster novae-angliae</span> <span class="cr">— mauve autumn asters extend season as hyssop fades; both pollinator staples</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Hyssop golden jubilee -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="Hyssop golden jubilee" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Hyssop golden jubilee</td>
+        <td class="scientific-name">Agastache foeniculum</td>
+        <td class="cultivar">Golden Jubilee</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_61E_agastache_foeniculum_golden_jubilee_seeds" target="_blank">61e</a></td>
+        <td class="count"><span class="count-badge">16</span></td>
+        <td class="size"><span class="size-pill">2 inch (5cm)</span></td>
+        <td class="mature">50–75cm</td>
+        <td class="mature">25–40cm</td>
+        <td class="timeline">Hardy perennial<br>Flowers yr 1 (Feb start); 14–18 wks</td>
+        <td class="plant-size">10–15cm, 2–3 true leaves, after last frost</td>
+        <td><span class="ready ready-weeks">~4 weeks (mid-Jun)</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Front to mid</span>
+          The bright chartreuse-gold foliage earns its front-of-border position all season, before and after flowering. Full sun essential to keep foliage colour vivid.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Salvia nemorosa 'Caradonna'</span> <span class="cr">— deep violet-black spikes: powerful contrast with golden foliage</span></li>
+            <li><span class="cn">Achillea millefolium 'Colorado'</span> <span class="cr">— warm flat heads alongside chartreuse foliage; both sun and drainage lovers</span></li>
+            <li><span class="cn">Nepeta × faassenii</span> <span class="cr">— soft grey-blue in front; both attract pollinators; restrained harmony</span></li>
+            <li><span class="cn">Echinacea purpurea</span> <span class="cr">— mauve-pink globes complement both the golden leaves and blue flowers</span></li>
+            <li><span class="cn">Rudbeckia triloba</span> <span class="cr">— golden daisies intensify the sunny chartreuse-and-gold scheme in late summer</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Lupins -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="Lupins" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20906.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20906.jpg" alt="Lupins" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Lupins</td>
+        <td class="scientific-name">Lupinus polyphyllus</td>
+        <td class="cultivar">Formula Mixed</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_828D_lupinus_polyphyllus_formula_mixed_seeds" target="_blank">828D</a></td>
+        <td class="count"><span class="count-badge">21</span></td>
+        <td class="size"><span class="size-pill">1 inch (2.5cm)</span></td>
+        <td class="mature">90–120cm</td>
+        <td class="mature">45–60cm</td>
+        <td class="timeline">Hardy perennial<br>Flowers yr 1 (early start) or yr 2</td>
+        <td class="plant-size">10–15cm, 4+ true leaves; plant young — hates a disturbed taproot</td>
+        <td>
+          <span class="ready ready-weeks">~3 weeks (early Jun)</span>
+          <span class="warn">⚠ Must be in individual deep pots — pot up immediately if not</span>
+        </td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid to back</span>
+          Architecturally dominant in early summer — plant in groups of 3–5 in harmonising colours. Cut spikes promptly after flowering to tidy and reduce unwanted self-seeding.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Digitalis purpurea 'Snow Thimble'</span> <span class="cr">— white foxglove spikes alongside lupins: bold early-summer vertical drama</span></li>
+            <li><span class="cn">Allium hollandicum 'Purple Sensation'</span> <span class="cr">— purple globes coincide with early lupin flowering; classic round-vs-spike contrast</span></li>
+            <li><span class="cn">Geranium × magnificum</span> <span class="cr">— mounding blue-violet habit fills below and between lupin spikes</span></li>
+            <li><span class="cn">Salvia nemorosa 'Caradonna'</span> <span class="cr">— deep violet in front bridges gap as lupins fade after early-summer peak</span></li>
+            <li><span class="cn">Paeonia lactiflora</span> <span class="cr">— globe-shaped blooms contrast the vertical lupin; richness harmonises with mixed palette</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Scabious mix -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="Scabious mix" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Scabious mix</td>
+        <td class="scientific-name">Scabiosa atropurpurea</td>
+        <td class="cultivar">Dwarf Mixed Colours</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_1148G_scabiosa_atropurpurea_dwarf_mixed_colours_seeds" target="_blank">1148g</a></td>
+        <td class="count"><span class="count-badge">10</span></td>
+        <td class="size"><span class="size-pill">8 inch (20cm)</span></td>
+        <td class="mature">40–50cm</td>
+        <td class="mature">25–35cm</td>
+        <td class="timeline">Half-hardy annual<br>14–18 wks to flower</td>
+        <td class="plant-size">8–12cm, after all frost risk</td>
+        <td><span class="ready ready-now">Ready now</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Front</span>
+          Slender wiry stems with pincushion heads — best woven through front of border where bobbing flowers are seen close up. Deadhead regularly for months of bloom.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Nepeta × faassenii</span> <span class="cr">— sprawling grey-blue softens the base; echoes the cooler mauve tones in the mix</span></li>
+            <li><span class="cn">Geranium 'Rozanne'</span> <span class="cr">— scrambling blue fills between plants; picks up lavender end of the colour range</span></li>
+            <li><span class="cn">Linaria purpurea 'Canon Went'</span> <span class="cr">— tall airy mauve spikes behind create complementary height-and-colour combination</span></li>
+            <li><span class="cn">Achillea millefolium 'Colorado'</span> <span class="cr">— flat heads contrast the round pincushions; midsummer bloom overlap</span></li>
+            <li><span class="cn">Verbena bonariensis</span> <span class="cr">— tall airy purple above the compact scabious; both attract butterflies</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Toadflax purple -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="Toadflax purple" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_7906.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_7906.jpg" alt="Toadflax purple" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_7907.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_7907.jpg" alt="Toadflax purple" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Toadflax purple</td>
+        <td class="scientific-name">Linaria purpurea</td>
+        <td class="cultivar">Canon Went</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_813L_linaria_purpurea_canon_went_seeds" target="_blank">813L</a></td>
+        <td class="count"><span class="count-badge">20</span></td>
+        <td class="size"><span class="size-pill">3 inch (7.5cm)</span></td>
+        <td class="mature">60–90cm</td>
+        <td class="mature">20–35cm</td>
+        <td class="timeline">Hardy perennial<br>Flowers yr 1 (Mar start); Jun–Sep</td>
+        <td class="plant-size">5–8cm, 3–4 true leaves; tolerates transplanting well</td>
+        <td><span class="ready ready-now">Ready now</span></td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid or front</span>
+          Filmy, translucent habit means it can come well forward without blocking views. Best in drifts or self-seeded; thrives in dry gravel borders and poor soil.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Salvia nemorosa</span> <span class="cr">— violet-blue spikes alongside pale mauve Linaria: harmonious cool-toned combination</span></li>
+            <li><span class="cn">Nepeta × faassenii</span> <span class="cr">— sprawling silver-blue catmint at base; both drought-tolerant bee plants</span></li>
+            <li><span class="cn">Rosa (soft pink or white)</span> <span class="cr">— slender pink spikes weave through rose canes with natural informality</span></li>
+            <li><span class="cn">Ammi majus</span> <span class="cr">— white airy umbels alongside pink-mauve spikes; both have see-through quality</span></li>
+            <li><span class="cn">Echinacea purpurea</span> <span class="cr">— large mauve-pink globes contrast slender spikes while harmonising in colour</span></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- Woolly foxglove -->
+      <tr>
+        <td class="photo">
+          <div class="photo-strip">
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8873.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8873.jpg" alt="Woolly foxglove" loading="lazy"></a>
+            <a href="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8874.jpg" target="_blank"><img src="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8874.jpg" alt="Woolly foxglove" loading="lazy"></a>
+          </div>
+        </td>
+        <td class="common-name">Woolly foxglove</td>
+        <td class="scientific-name">Digitalis lanata</td>
+        <td class="cultivar">Café Crème</td>
+        <td class="seed-code"><a href="https://www.chilternseeds.co.uk/item_464W_digitalis_lanata_caf_crme_seeds" target="_blank">464w</a></td>
+        <td class="count"><span class="count-badge">4</span></td>
+        <td class="size"><span class="size-pill">tiny (&lt;1cm)</span></td>
+        <td class="mature">75–120cm</td>
+        <td class="mature">30–40cm</td>
+        <td class="timeline">Biennial (short-lived perennial)<br>Rosette yr 1; flowers yr 2</td>
+        <td class="plant-size">Prick out to 7.5cm pot at first true leaves; plant out autumn when rosette established</td>
+        <td>
+          <span class="ready ready-later">Beds: autumn 2026</span>
+          <span class="warn">Prick out to individual pots within ~2 weeks</span>
+        </td>
+        <td class="border-pos">
+          <span class="pos-tag">Mid</span>
+          Year 1 rosette sits at the front; the year 2 spike threads to 120cm through mid-border neighbours. Warm cream-tawny tones suit bronze and amber planting schemes.
+        </td>
+        <td class="companions">
+          <ul>
+            <li><span class="cn">Alchemilla mollis</span> <span class="cr">— chartreuse frothy skirt contrasts the narrow spike; echoes cream flower colour</span></li>
+            <li><span class="cn">Salvia nemorosa 'Caradonna'</span> <span class="cr">— deep violet contrast with pale woolly spikes; both prefer well-drained sun</span></li>
+            <li><span class="cn">Rosa (apricot/peachy tones)</span> <span class="cr">— cream-and-tawny foxglove tones harmonise with blush or apricot roses</span></li>
+            <li><span class="cn">Stipa tenuissima</span> <span class="cr">— straw-coloured feather grass softens base; both tolerate dry conditions</span></li>
+            <li><span class="cn">Digitalis purpurea 'Dottie Peach'</span> <span class="cr">— elegant single-genus drift: the slender woolly spike behind the compact peach</span></li>
+          </ul>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <p class="no-results" id="no-results">No plants match your search.</p>
+</div>
+
+<footer>13 plants &bull; data current 17 May 2026 &bull; photos &amp; codes link to Chiltern Seeds</footer>
+
+<script>
+  const rows = Array.from(document.querySelectorAll('#plant-body tr'));
+  const noResults = document.getElementById('no-results');
+
+  document.getElementById('search').addEventListener('input', function () {
+    const q = this.value.toLowerCase();
+    let visible = 0;
+    rows.forEach(row => {
+      const match = row.textContent.toLowerCase().includes(q);
+      row.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  });
+
+  let sortCol = null, sortDir = 1;
+  document.querySelectorAll('thead th[data-col]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = parseInt(th.dataset.col);
+      sortDir = (sortCol === col) ? sortDir * -1 : 1;
+      sortCol = col;
+      document.querySelectorAll('thead th').forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+      th.classList.add(sortDir === 1 ? 'sorted-asc' : 'sorted-desc');
+      const tbody = document.getElementById('plant-body');
+      rows.sort((a, b) => {
+        const aText = a.cells[col].textContent.trim().toLowerCase();
+        const bText = b.cells[col].textContent.trim().toLowerCase();
+        const aNum = parseFloat(aText), bNum = parseFloat(bText);
+        if (!isNaN(aNum) && !isNaN(bNum)) return (aNum - bNum) * sortDir;
+        return aText.localeCompare(bText) * sortDir;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+</script>
+
+</body>
+</html>
