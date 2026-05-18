@@ -100,7 +100,7 @@
     }
     .beds-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
     .bed-card {
@@ -120,7 +120,8 @@
     }
     .bed-svg { width: 100%; height: auto; display: block; }
     .bed-legend {
-      margin-top: 0.6rem;
+      flex: 1;
+      min-width: 0;
       font-size: 0.7rem;
       color: #3a4a3a;
     }
@@ -135,6 +136,27 @@
     }
     .bed-legend .lz { font-size: 0.62rem; color: #8a9a80; }
     .bed-legend .autumn-note { font-size: 0.65rem; color: #9a6a30; font-style: italic; }
+    .bed-card-body {
+      display: flex;
+      gap: 1.3rem;
+      align-items: flex-start;
+      margin-top: 0.7rem;
+    }
+    .bed-diagram { flex: 0 0 290px; }
+    .bed-legend .thumb {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid #c8d5b9;
+      display: block;
+    }
+    .bed-legend td.thumb-cell {
+      width: 58px;
+      padding: 0.1rem 0.25rem;
+      vertical-align: middle;
+    }
+
 
     hr.section-div {
       max-width: 1800px;
@@ -366,7 +388,9 @@
     <!-- ─── BED 1: White Drift & Purple Haze ─── -->
     <div class="bed-card">
       <h3>Bed 1 — White Drift &amp; Purple Haze <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Cherry)</span></h3>
-      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+      <div class="bed-card-body">
+        <div class="bed-diagram">
+          <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
         <defs>
           <clipPath id="c1"><circle cx="150" cy="148" r="130"/></clipPath>
         </defs>
@@ -431,23 +455,27 @@
         <!-- viewing direction -->
         <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
       </svg>
-      <div class="bed-legend">
+        </div>
+        <div class="bed-legend">
         <table>
-          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×8 · back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
-          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×3 · mid-front</td></tr>
-          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
-          <tr><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×2 · front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×8 · back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="HY" loading="lazy"></td><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="FV" loading="lazy"></td><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×3 · mid-front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="SC" loading="lazy"></td><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×2 · front</td></tr>
         </table>
+      </div>
       </div>
     </div>
 
     <!-- ─── BED 2: Golden Haze ─── -->
     <div class="bed-card">
       <h3>Bed 2 — Golden Haze <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Apple)</span></h3>
-      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+      <div class="bed-card-body">
+        <div class="bed-diagram">
+          <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
         <defs>
           <clipPath id="c2"><circle cx="150" cy="148" r="130"/></clipPath>
         </defs>
@@ -509,25 +537,29 @@
         <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
         <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
       </svg>
-      <div class="bed-legend">
+        </div>
+        <div class="bed-legend">
         <table>
-          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×2 · back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×4 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×4 · sides</td></tr>
-          <tr><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP)</td><td class="lz">×4 · mid-front</td></tr>
-          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="RU" loading="lazy"></td><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×2 · back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="YA" loading="lazy"></td><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×4 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="HG" loading="lazy"></td><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×4 · sides</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="FP" loading="lazy"></td><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP)</td><td class="lz">×4 · mid-front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
         </table>
+      </div>
       </div>
     </div>
 
     <!-- ─── BED 3: Natural Meadow ─── -->
     <div class="bed-card">
       <h3>Bed 3 — Natural Meadow <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Pear)</span></h3>
-      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+      <div class="bed-card-body">
+        <div class="bed-diagram">
+          <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
         <defs>
           <clipPath id="c3"><circle cx="150" cy="148" r="130"/></clipPath>
         </defs>
@@ -587,25 +619,29 @@
         <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
         <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
       </svg>
-      <div class="bed-legend">
+        </div>
+        <div class="bed-legend">
         <table>
-          <tr><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
-          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×5 · mid-back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×5 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(208,190,136,0.85);border-color:#a09060"></span></td><td><em>Digitalis lanata</em> 'Café Crème' (WF) <span class="autumn-note">— plant autumn</span></td><td class="lz">×2 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
-          <tr><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×4 · mid-front</td></tr>
-          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×8 · front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="HY" loading="lazy"></td><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="YA" loading="lazy"></td><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×5 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8873.jpg" alt="WF" loading="lazy"></td><td><span class="sw" style="background:rgba(208,190,136,0.85);border-color:#a09060"></span></td><td><em>Digitalis lanata</em> 'Café Crème' (WF) <span class="autumn-note">— plant autumn</span></td><td class="lz">×2 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="FV" loading="lazy"></td><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×4 · mid-front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×8 · front</td></tr>
         </table>
+      </div>
       </div>
     </div>
 
     <!-- ─── BED 4: Peach & Cream at Dusk ─── -->
     <div class="bed-card">
       <h3>Bed 4 — Peach &amp; Cream at Dusk <span style="font-weight:normal;font-size:0.8em;color:#7a9470;">(Plum)</span></h3>
-      <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
+      <div class="bed-card-body">
+        <div class="bed-diagram">
+          <svg viewBox="0 0 300 318" xmlns="http://www.w3.org/2000/svg" class="bed-svg">
         <defs>
           <clipPath id="c4"><circle cx="150" cy="148" r="130"/></clipPath>
         </defs>
@@ -669,18 +705,20 @@
         <text x="63" y="301" text-anchor="middle" font-size="7" fill="#8a9a70" font-family="Georgia,serif">1m</text>
         <text x="150" y="313" text-anchor="middle" font-size="8" fill="#8a9a80" font-family="Georgia,serif">▲ viewed from here</text>
       </svg>
-      <div class="bed-legend">
+        </div>
+        <div class="bed-legend">
         <table>
-          <tr><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×4 · mid-back</td></tr>
-          <tr><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×4 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid sides</td></tr>
-          <tr><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP) <strong>— feature</strong></td><td class="lz">×8 · mid</td></tr>
-          <tr><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
-          <tr><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×4 · front</td></tr>
-          <tr><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="RU" loading="lazy"></td><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×4 · mid-back</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×4 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="HG" loading="lazy"></td><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid sides</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="FP" loading="lazy"></td><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP) <strong>— feature</strong></td><td class="lz">×8 · mid</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="SC" loading="lazy"></td><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×4 · front</td></tr>
+          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
         </table>
+      </div>
       </div>
     </div>
 
