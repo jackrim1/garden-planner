@@ -1878,37 +1878,31 @@
   })();
 
   (function() {
-    function highlight(card, code) {
-      card.querySelectorAll('.bed-svg ellipse[data-plant]').forEach(function(el) {
-        el.style.opacity = el.dataset.plant === code ? '' : '0.15';
-      });
-      card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
-        tr.classList.toggle('plant-hl', tr.dataset.plant === code);
-      });
-    }
-    function clearHighlight(card) {
-      card.querySelectorAll('.bed-svg ellipse[data-plant]').forEach(function(el) {
-        el.style.opacity = '';
-      });
-      card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
-        tr.classList.remove('plant-hl');
-      });
-    }
     document.querySelectorAll('.bed-card').forEach(function(card) {
       var svg = card.querySelector('.bed-svg');
       if (!svg) return;
-      var cur = null;
-      svg.addEventListener('mouseover', function(e) {
-        var el = e.target.closest ? e.target.closest('[data-plant]') : null;
-        var code = el ? el.dataset.plant : null;
-        if (code === cur) return;
-        cur = code;
-        if (code) highlight(card, code); else clearHighlight(card);
+
+      function applyHighlight(code) {
+        svg.querySelectorAll('ellipse[data-plant]').forEach(function(el) {
+          el.style.opacity = el.dataset.plant === code ? '' : '0.15';
+        });
+        card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
+          tr.classList.toggle('plant-hl', tr.dataset.plant === code);
+        });
+      }
+      function clearAll() {
+        svg.querySelectorAll('ellipse[data-plant]').forEach(function(el) {
+          el.style.opacity = '';
+        });
+        card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
+          tr.classList.remove('plant-hl');
+        });
+      }
+
+      svg.querySelectorAll('ellipse[data-plant]').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { applyHighlight(el.dataset.plant); });
       });
-      svg.addEventListener('mouseleave', function() {
-        cur = null;
-        clearHighlight(card);
-      });
+      svg.addEventListener('mouseleave', clearAll);
     });
   })();
 </script>
