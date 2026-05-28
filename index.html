@@ -1843,6 +1843,7 @@
   (function() {
     var tiers = ['xs','s','m','l','xl'];
     var breaks = [40, 70, 100, 150, Infinity];
+    var naturalW = {xs:16, s:24, m:34, l:46, xl:62};
     function parseMid(txt) {
       var m = txt.match(/\d+/g);
       if (!m) return null;
@@ -1852,18 +1853,25 @@
       for (var i = 0; i < breaks.length; i++) if (cm <= breaks[i]) return tiers[i];
       return 'xl';
     }
+    function spreadRatio(s) {
+      return Math.max(0.35, Math.min(1.0, 0.35 + (s - 20) / (120 - 20) * 0.65));
+    }
     document.querySelectorAll('#plant-body tr').forEach(function(row) {
-      var cell = row.querySelector('td.mature');
-      if (!cell) return;
-      var cm = parseMid(cell.textContent.trim());
+      var cells = row.querySelectorAll('td.mature');
+      if (cells.length < 2) return;
+      var heightCell = cells[0], spreadCell = cells[1];
+      var cm = parseMid(heightCell.textContent.trim());
       if (!cm) return;
       var t = tier(cm);
+      var spreadMid = parseMid(spreadCell.textContent.trim());
+      var activeW = Math.round(naturalW[t] * (spreadMid ? spreadRatio(spreadMid) : 1.0));
       var div = document.createElement('div');
       div.className = 'h-scale';
       div.innerHTML = tiers.map(function(k) {
-        return '<span class="h-icon ' + k + ' ' + (k === t ? 'h-active' : 'h-inactive') + '"></span>';
+        var extra = (k === t) ? ' style="width:' + activeW + 'px"' : '';
+        return '<span class="h-icon ' + k + ' ' + (k === t ? 'h-active' : 'h-inactive') + '"' + extra + '></span>';
       }).join('') + '<span class="h-man-div"></span><span class="h-icon man h-man"></span>';
-      cell.insertBefore(div, cell.firstChild);
+      heightCell.insertBefore(div, heightCell.firstChild);
     });
   })();
 </script>
