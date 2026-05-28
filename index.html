@@ -1843,10 +1843,10 @@
   (function() {
     var tiers = ['xs','s','m','l','xl'];
     var breaks = [40, 70, 100, 150, Infinity];
-    function parseMax(txt) {
+    function parseMid(txt) {
       var m = txt.match(/\d+/g);
       if (!m) return null;
-      return m.length > 1 ? parseInt(m[m.length - 1]) : parseInt(m[0]);
+      return m.length > 1 ? (parseInt(m[0]) + parseInt(m[1])) / 2 : parseInt(m[0]);
     }
     function tier(cm) {
       for (var i = 0; i < breaks.length; i++) if (cm <= breaks[i]) return tiers[i];
@@ -1855,7 +1855,7 @@
     document.querySelectorAll('#plant-body tr').forEach(function(row) {
       var cell = row.querySelector('td.mature');
       if (!cell) return;
-      var cm = parseMax(cell.textContent.trim());
+      var cm = parseMid(cell.textContent.trim());
       if (!cm) return;
       var t = tier(cm);
       var div = document.createElement('div');
