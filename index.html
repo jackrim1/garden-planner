@@ -156,9 +156,9 @@
       padding: 0.1rem 0.25rem;
       vertical-align: middle;
     }
-    .bed-svg ellipse[data-plant] { cursor: pointer; transition: opacity 0.1s; }
-    .bed-legend tr[data-plant] { transition: background 0.1s; }
-    .bed-legend tr.plant-hl { background: rgba(60,100,50,0.1); }
+    .bed-svg ellipse[data-plant] { cursor: pointer; }
+    .bed-legend tr[data-plant] .thumb { transition: border-color 0.12s, box-shadow 0.12s; }
+    .bed-legend tr.plant-hl .thumb { border-color: #3a6a30; box-shadow: 0 0 0 2px rgba(50,100,40,0.35); }
 
 
     hr.section-div {
@@ -1883,17 +1883,11 @@
       if (!svg) return;
 
       function applyHighlight(code) {
-        svg.querySelectorAll('ellipse[data-plant]').forEach(function(el) {
-          el.style.opacity = el.dataset.plant === code ? '' : '0.15';
-        });
         card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
           tr.classList.toggle('plant-hl', tr.dataset.plant === code);
         });
       }
       function clearAll() {
-        svg.querySelectorAll('ellipse[data-plant]').forEach(function(el) {
-          el.style.opacity = '';
-        });
         card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
           tr.classList.remove('plant-hl');
         });
