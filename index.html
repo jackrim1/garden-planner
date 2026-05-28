@@ -156,6 +156,9 @@
       padding: 0.1rem 0.25rem;
       vertical-align: middle;
     }
+    .bed-svg ellipse[data-plant] { cursor: pointer; transition: opacity 0.1s; }
+    .bed-legend tr[data-plant] { transition: background 0.1s; }
+    .bed-legend tr.plant-hl { background: rgba(60,100,50,0.1); }
 
 
     hr.section-div {
@@ -462,52 +465,52 @@
         <!-- plant blobs, back → front -->
         <g clip-path="url(#c1)">
           <!-- Foxglove snow (WH) back cluster -->
-          <ellipse cx="125" cy="38" rx="23" ry="18" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
-          <ellipse cx="166" cy="26" rx="16" ry="13" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
-          <ellipse cx="197" cy="43" rx="19" ry="15" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="125" cy="38" rx="23" ry="18" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="166" cy="26" rx="16" ry="13" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="197" cy="43" rx="19" ry="15" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
           <!-- Hyssop giant yellow (HY) back sides -->
-          <ellipse cx="67" cy="78" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
-          <ellipse cx="233" cy="80" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <ellipse data-plant="HY" cx="67" cy="78" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <ellipse data-plant="HY" cx="233" cy="80" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
           <!-- Bishops flowers (BF) mid-back, airy -->
-          <ellipse cx="100" cy="93" rx="16" ry="13" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
-          <ellipse cx="173" cy="80" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
-          <ellipse cx="211" cy="98" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="100" cy="93" rx="16" ry="13" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="173" cy="80" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="211" cy="98" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
           <!-- Toadflax purple (TP) mid sides + scatter -->
-          <ellipse cx="61" cy="143" rx="14" ry="21" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
-          <ellipse cx="241" cy="146" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
-          <ellipse cx="88" cy="186" rx="12" ry="16" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="61" cy="143" rx="14" ry="21" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="241" cy="146" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="88" cy="186" rx="12" ry="16" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
           <!-- Feverfew (FV) mid-front -->
-          <ellipse cx="115" cy="196" rx="17" ry="13" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
-          <ellipse cx="196" cy="193" rx="14" ry="11" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <ellipse data-plant="FV" cx="115" cy="196" rx="17" ry="13" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <ellipse data-plant="FV" cx="196" cy="193" rx="14" ry="11" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
           <!-- Cape daisy (CD) front -->
-          <ellipse cx="83" cy="228" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="155" cy="249" rx="19" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="219" cy="226" rx="18" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="83" cy="228" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="155" cy="249" rx="19" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="219" cy="226" rx="18" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
           <!-- Scabious (SC) front dots -->
-          <ellipse cx="148" cy="265" rx="11" ry="9" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
+          <ellipse data-plant="SC" cx="148" cy="265" rx="11" ry="9" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
         </g>
         <!-- tree -->
         <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
         <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Cherry</text>
         <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
         <!-- labels outside blobs -->
-        <text x="125" y="38" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="166" y="26" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="197" y="43" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="67" y="78" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
-        <text x="233" y="80" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
-        <text x="100" y="93" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="173" y="80" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="211" y="98" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="61" y="143" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="241" y="146" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="88" y="186" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="115" y="196" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
-        <text x="196" y="193" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
-        <text x="83" y="228" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="155" y="249" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="219" y="226" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="148" y="265" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif">SC</text>
+        <text x="125" y="38" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="166" y="26" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="197" y="43" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="67" y="78" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif" data-plant="HY" pointer-events="none">HY</text>
+        <text x="233" y="80" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif" data-plant="HY" pointer-events="none">HY</text>
+        <text x="100" y="93" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="173" y="80" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="211" y="98" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="61" y="143" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="241" y="146" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="88" y="186" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="115" y="196" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="FV" pointer-events="none">FV</text>
+        <text x="196" y="193" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="FV" pointer-events="none">FV</text>
+        <text x="83" y="228" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="155" y="249" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="219" y="226" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="148" y="265" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif" data-plant="SC" pointer-events="none">SC</text>
         <!-- scale bar -->
         <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
         <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
@@ -519,13 +522,13 @@
         </div>
         <div class="bed-legend">
         <table>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×8 · back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="HY" loading="lazy"></td><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="FV" loading="lazy"></td><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×3 · mid-front</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="SC" loading="lazy"></td><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×2 · front</td></tr>
+          <tr data-plant="WH"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×8 · back</td></tr>
+          <tr data-plant="HY"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="HY" loading="lazy"></td><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
+          <tr data-plant="BF"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
+          <tr data-plant="TP"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · mid</td></tr>
+          <tr data-plant="FV"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="FV" loading="lazy"></td><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×3 · mid-front</td></tr>
+          <tr data-plant="CD"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr data-plant="SC"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="SC" loading="lazy"></td><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×2 · front</td></tr>
         </table>
       </div>
       </div>
@@ -544,54 +547,54 @@
         <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
         <g clip-path="url(#c2)">
           <!-- Foxglove snow (WH) back -->
-          <ellipse cx="118" cy="36" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
-          <ellipse cx="182" cy="40" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="118" cy="36" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="182" cy="40" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
           <!-- Rudbeckia (RU) back right, golden -->
-          <ellipse cx="220" cy="65" rx="18" ry="15" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
+          <ellipse data-plant="RU" cx="220" cy="65" rx="18" ry="15" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
           <!-- Lupin clump (LU) mid-back left, prominent -->
-          <ellipse cx="112" cy="91" rx="29" ry="24" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
+          <ellipse data-plant="LU" cx="112" cy="91" rx="29" ry="24" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
           <!-- Bishops flowers (BF) mid-back scattered -->
-          <ellipse cx="180" cy="78" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
-          <ellipse cx="218" cy="100" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
-          <ellipse cx="80" cy="114" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="180" cy="78" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="218" cy="100" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="80" cy="114" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
           <!-- Yarrow (YA) mid warm accent -->
-          <ellipse cx="70" cy="156" rx="18" ry="14" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
-          <ellipse cx="230" cy="151" rx="16" ry="12" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <ellipse data-plant="YA" cx="70" cy="156" rx="18" ry="14" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <ellipse data-plant="YA" cx="230" cy="151" rx="16" ry="12" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
           <!-- Hyssop golden jubilee (HG) chartreuse foliage mid -->
-          <ellipse cx="91" cy="176" rx="18" ry="15" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
-          <ellipse cx="207" cy="175" rx="16" ry="14" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <ellipse data-plant="HG" cx="91" cy="176" rx="18" ry="15" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <ellipse data-plant="HG" cx="207" cy="175" rx="16" ry="14" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
           <!-- Toadflax (TP) sides -->
-          <ellipse cx="63" cy="197" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
-          <ellipse cx="239" cy="194" rx="10" ry="17" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="63" cy="197" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="239" cy="194" rx="10" ry="17" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
           <!-- Foxglove peach (FP) mid-front accent -->
-          <ellipse cx="118" cy="207" rx="20" ry="16" fill="rgba(226,160,108,0.78)" stroke="#b07858" stroke-width="1"/>
-          <ellipse cx="192" cy="210" rx="18" ry="14" fill="rgba(226,160,108,0.78)" stroke="#b07858" stroke-width="1"/>
+          <ellipse data-plant="FP" cx="118" cy="207" rx="20" ry="16" fill="rgba(226,160,108,0.78)" stroke="#b07858" stroke-width="1"/>
+          <ellipse data-plant="FP" cx="192" cy="210" rx="18" ry="14" fill="rgba(226,160,108,0.78)" stroke="#b07858" stroke-width="1"/>
           <!-- Cape daisy (CD) front -->
-          <ellipse cx="80" cy="236" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="155" cy="253" rx="19" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="222" cy="233" rx="18" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="80" cy="236" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="155" cy="253" rx="19" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="222" cy="233" rx="18" ry="14" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
         </g>
         <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
         <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Apple</text>
         <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
-        <text x="118" y="36" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="182" y="40" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="220" y="65" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">RU</text>
-        <text x="112" y="91" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif">LU</text>
-        <text x="180" y="78" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="218" y="100" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="80" y="114" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="70" y="156" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
-        <text x="230" y="151" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
-        <text x="91" y="176" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
-        <text x="207" y="175" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
-        <text x="63" y="197" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="239" y="194" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="118" y="207" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif">FP</text>
-        <text x="192" y="210" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif">FP</text>
-        <text x="80" y="236" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="155" y="253" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="222" y="233" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="118" y="36" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="182" y="40" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="220" y="65" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="RU" pointer-events="none">RU</text>
+        <text x="112" y="91" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif" data-plant="LU" pointer-events="none">LU</text>
+        <text x="180" y="78" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="218" y="100" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="80" y="114" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="70" y="156" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="YA" pointer-events="none">YA</text>
+        <text x="230" y="151" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="YA" pointer-events="none">YA</text>
+        <text x="91" y="176" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif" data-plant="HG" pointer-events="none">HG</text>
+        <text x="207" y="175" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif" data-plant="HG" pointer-events="none">HG</text>
+        <text x="63" y="197" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="239" y="194" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="118" y="207" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif" data-plant="FP" pointer-events="none">FP</text>
+        <text x="192" y="210" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif" data-plant="FP" pointer-events="none">FP</text>
+        <text x="80" y="236" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="155" y="253" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="222" y="233" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
         <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
         <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
         <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
@@ -601,15 +604,15 @@
         </div>
         <div class="bed-legend">
         <table>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="RU" loading="lazy"></td><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×2 · back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="YA" loading="lazy"></td><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×4 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="HG" loading="lazy"></td><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×4 · sides</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="FP" loading="lazy"></td><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP)</td><td class="lz">×4 · mid-front</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr data-plant="WH"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr data-plant="RU"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="RU" loading="lazy"></td><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×2 · back</td></tr>
+          <tr data-plant="LU"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr data-plant="BF"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×6 · mid-back</td></tr>
+          <tr data-plant="YA"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="YA" loading="lazy"></td><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×4 · mid</td></tr>
+          <tr data-plant="HG"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="HG" loading="lazy"></td><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid</td></tr>
+          <tr data-plant="TP"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×4 · sides</td></tr>
+          <tr data-plant="FP"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="FP" loading="lazy"></td><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP)</td><td class="lz">×4 · mid-front</td></tr>
+          <tr data-plant="CD"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
         </table>
       </div>
       </div>
@@ -628,52 +631,52 @@
         <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
         <g clip-path="url(#c3)">
           <!-- HY back sides -->
-          <ellipse cx="87" cy="52" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
-          <ellipse cx="215" cy="55" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <ellipse data-plant="HY" cx="87" cy="52" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
+          <ellipse data-plant="HY" cx="215" cy="55" rx="16" ry="23" fill="rgba(162,182,80,0.78)" stroke="#7a8a3a" stroke-width="1"/>
           <!-- Foxglove snow back centre -->
-          <ellipse cx="138" cy="30" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
-          <ellipse cx="178" cy="38" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="HY" cx="138" cy="30" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="HY" cx="178" cy="38" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
           <!-- Lupin clump mid-back left (big asymmetric cluster) -->
-          <ellipse cx="107" cy="92" rx="29" ry="25" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
+          <ellipse data-plant="HY" cx="107" cy="92" rx="29" ry="25" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
           <!-- BF scattered mid-back -->
-          <ellipse cx="180" cy="79" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
-          <ellipse cx="223" cy="104" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="180" cy="79" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="223" cy="104" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
           <!-- Yarrow mid warm -->
-          <ellipse cx="61" cy="141" rx="19" ry="14" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
-          <ellipse cx="233" cy="136" rx="17" ry="12" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="61" cy="141" rx="19" ry="14" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="233" cy="136" rx="17" ry="12" fill="rgba(198,153,38,0.76)" stroke="#907218" stroke-width="1"/>
           <!-- Woolly foxglove mid, dashed = autumn -->
-          <ellipse cx="162" cy="118" rx="15" ry="12" fill="rgba(208,190,136,0.7)" stroke="#a09060" stroke-width="1" stroke-dasharray="3,2"/>
+          <ellipse data-plant="BF" cx="162" cy="118" rx="15" ry="12" fill="rgba(208,190,136,0.7)" stroke="#a09060" stroke-width="1" stroke-dasharray="3,2"/>
           <!-- Toadflax purple sides mid -->
-          <ellipse cx="69" cy="178" rx="13" ry="21" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
-          <ellipse cx="232" cy="175" rx="11" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="69" cy="178" rx="13" ry="21" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="232" cy="175" rx="11" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
           <!-- Feverfew mid-front -->
-          <ellipse cx="104" cy="202" rx="17" ry="13" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
-          <ellipse cx="206" cy="200" rx="15" ry="12" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="104" cy="202" rx="17" ry="13" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="206" cy="200" rx="15" ry="12" fill="rgba(246,246,238,0.84)" stroke="#b0b098" stroke-width="1"/>
           <!-- Cape daisy front -->
-          <ellipse cx="79" cy="238" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="150" cy="257" rx="21" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="221" cy="235" rx="19" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="79" cy="238" rx="21" ry="16" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="150" cy="257" rx="21" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="221" cy="235" rx="19" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
         </g>
         <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
         <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Pear</text>
         <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
-        <text x="87" y="52" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
-        <text x="215" y="55" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif">HY</text>
-        <text x="138" y="30" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="178" y="38" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="107" y="92" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif">LU</text>
-        <text x="180" y="79" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="223" y="104" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="61" y="141" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
-        <text x="233" y="136" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">YA</text>
-        <text x="162" y="118" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a5030" font-family="Georgia,serif">WF</text>
-        <text x="69" y="178" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="232" y="175" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="104" y="202" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
-        <text x="206" y="200" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">FV</text>
-        <text x="79" y="238" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="150" y="257" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="221" y="235" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="87" y="52" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif" data-plant="HY" pointer-events="none">HY</text>
+        <text x="215" y="55" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0e0" font-family="Georgia,serif" data-plant="HY" pointer-events="none">HY</text>
+        <text x="138" y="30" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="178" y="38" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="107" y="92" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif" data-plant="LU" pointer-events="none">LU</text>
+        <text x="180" y="79" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="223" y="104" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="61" y="141" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="YA" pointer-events="none">YA</text>
+        <text x="233" y="136" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="YA" pointer-events="none">YA</text>
+        <text x="162" y="118" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a5030" font-family="Georgia,serif" data-plant="WF" pointer-events="none">WF</text>
+        <text x="69" y="178" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="232" y="175" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="104" y="202" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="FV" pointer-events="none">FV</text>
+        <text x="206" y="200" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="FV" pointer-events="none">FV</text>
+        <text x="79" y="238" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="150" y="257" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="221" y="235" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
         <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
         <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
         <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
@@ -683,15 +686,15 @@
         </div>
         <div class="bed-legend">
         <table>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="HY" loading="lazy"></td><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×5 · mid-back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="YA" loading="lazy"></td><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×5 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8873.jpg" alt="WF" loading="lazy"></td><td><span class="sw" style="background:rgba(208,190,136,0.85);border-color:#a09060"></span></td><td><em>Digitalis lanata</em> 'Café Crème' (WF) <span class="autumn-note">— plant autumn</span></td><td class="lz">×2 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="FV" loading="lazy"></td><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×4 · mid-front</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×8 · front</td></tr>
+          <tr data-plant="HY"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_8214_21716.jpg" alt="HY" loading="lazy"></td><td><span class="sw" style="background:rgba(162,182,80,0.9)"></span></td><td><em>Agastache nepetoides</em> (HY)</td><td class="lz">×4 · back sides</td></tr>
+          <tr data-plant="WH"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr data-plant="LU"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr data-plant="BF"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×5 · mid-back</td></tr>
+          <tr data-plant="YA"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_2548_13187.jpg" alt="YA" loading="lazy"></td><td><span class="sw" style="background:rgba(198,153,38,0.9)"></span></td><td><em>Achillea millefolium</em> 'Colorado' (YA)</td><td class="lz">×5 · mid</td></tr>
+          <tr data-plant="WF"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_11148_8873.jpg" alt="WF" loading="lazy"></td><td><span class="sw" style="background:rgba(208,190,136,0.85);border-color:#a09060"></span></td><td><em>Digitalis lanata</em> 'Café Crème' (WF) <span class="autumn-note">— plant autumn</span></td><td class="lz">×2 · mid</td></tr>
+          <tr data-plant="TP"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
+          <tr data-plant="FV"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_3566_799.jpg" alt="FV" loading="lazy"></td><td><span class="sw" style="background:rgba(246,246,238,0.95);border-color:#b0b098"></span></td><td><em>Tanacetum parthenium</em> (FV)</td><td class="lz">×4 · mid-front</td></tr>
+          <tr data-plant="CD"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×8 · front</td></tr>
         </table>
       </div>
       </div>
@@ -710,56 +713,56 @@
         <circle cx="150" cy="148" r="130" fill="#ddd5b8" stroke="#8a9a60" stroke-width="2"/>
         <g clip-path="url(#c4)">
           <!-- WH back -->
-          <ellipse cx="120" cy="36" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
-          <ellipse cx="186" cy="40" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="120" cy="36" rx="23" ry="17" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="186" cy="40" rx="19" ry="14" fill="rgba(240,240,236,0.88)" stroke="#b8b8a8" stroke-width="1"/>
           <!-- Lupin clump back centre-left -->
-          <ellipse cx="150" cy="82" rx="29" ry="23" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
+          <ellipse data-plant="WH" cx="150" cy="82" rx="29" ry="23" fill="rgba(118,130,198,0.82)" stroke="#5860a8" stroke-width="1.5"/>
           <!-- Rudbeckia back sides, golden warmth -->
-          <ellipse cx="71" cy="91" rx="19" ry="15" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
-          <ellipse cx="228" cy="93" rx="17" ry="13" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="71" cy="91" rx="19" ry="15" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
+          <ellipse data-plant="WH" cx="228" cy="93" rx="17" ry="13" fill="rgba(218,166,30,0.8)" stroke="#a07820" stroke-width="1"/>
           <!-- BF mid scattered -->
-          <ellipse cx="84" cy="126" rx="16" ry="13" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
-          <ellipse cx="221" cy="122" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="84" cy="126" rx="16" ry="13" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
+          <ellipse data-plant="BF" cx="221" cy="122" rx="14" ry="11" fill="rgba(235,235,215,0.72)" stroke="#c0b898" stroke-width="1"/>
           <!-- HG chartreuse mid sides -->
-          <ellipse cx="74" cy="163" rx="17" ry="14" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
-          <ellipse cx="229" cy="161" rx="15" ry="12" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <ellipse data-plant="HG" cx="74" cy="163" rx="17" ry="14" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
+          <ellipse data-plant="HG" cx="229" cy="161" rx="15" ry="12" fill="rgba(182,198,45,0.78)" stroke="#8a9820" stroke-width="1"/>
           <!-- FP peach foxglove, feature mid, asymmetric clusters -->
-          <ellipse cx="107" cy="169" rx="23" ry="19" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
-          <ellipse cx="197" cy="171" rx="23" ry="19" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
-          <ellipse cx="152" cy="197" rx="19" ry="15" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
+          <ellipse data-plant="FP" cx="107" cy="169" rx="23" ry="19" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
+          <ellipse data-plant="FP" cx="197" cy="171" rx="23" ry="19" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
+          <ellipse data-plant="FP" cx="152" cy="197" rx="19" ry="15" fill="rgba(226,160,108,0.8)" stroke="#b07858" stroke-width="1.5"/>
           <!-- TP toadflax sides front -->
-          <ellipse cx="71" cy="201" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
-          <ellipse cx="233" cy="199" rx="10" ry="17" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="71" cy="201" rx="12" ry="19" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
+          <ellipse data-plant="TP" cx="233" cy="199" rx="10" ry="17" fill="rgba(194,156,218,0.76)" stroke="#8a68a8" stroke-width="1"/>
           <!-- SC scabious front dots -->
-          <ellipse cx="118" cy="232" rx="14" ry="11" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
-          <ellipse cx="193" cy="229" rx="12" ry="10" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
+          <ellipse data-plant="SC" cx="118" cy="232" rx="14" ry="11" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
+          <ellipse data-plant="SC" cx="193" cy="229" rx="12" ry="10" fill="rgba(145,108,192,0.84)" stroke="#7858a8" stroke-width="1"/>
           <!-- CD front -->
-          <ellipse cx="84" cy="249" rx="20" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="153" cy="261" rx="17" ry="13" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
-          <ellipse cx="219" cy="246" rx="16" ry="12" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="84" cy="249" rx="20" ry="15" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="153" cy="261" rx="17" ry="13" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
+          <ellipse data-plant="CD" cx="219" cy="246" rx="16" ry="12" fill="rgba(252,252,244,0.9)" stroke="#c0c0a0" stroke-width="1"/>
         </g>
         <circle cx="150" cy="148" r="23" fill="#3a7a30" stroke="#2a5a22" stroke-width="1.5"/>
         <text x="150" y="145" text-anchor="middle" font-size="7.5" fill="#c5e0b8" font-family="Georgia,serif">Plum</text>
         <text x="150" y="155" text-anchor="middle" font-size="6" fill="#a8d0a0" font-family="Georgia,serif">dwarf</text>
-        <text x="120" y="36" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="186" y="40" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">WH</text>
-        <text x="150" y="82" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif">LU</text>
-        <text x="71" y="91" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">RU</text>
-        <text x="228" y="93" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif">RU</text>
-        <text x="84" y="126" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="221" y="122" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif">BF</text>
-        <text x="74" y="163" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
-        <text x="229" y="161" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif">HG</text>
-        <text x="107" y="169" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#5a3020" font-family="Georgia,serif">FP</text>
-        <text x="197" y="171" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#5a3020" font-family="Georgia,serif">FP</text>
-        <text x="152" y="197" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif">FP</text>
-        <text x="71" y="201" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="233" y="199" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif">TP</text>
-        <text x="118" y="232" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif">SC</text>
-        <text x="193" y="229" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif">SC</text>
-        <text x="84" y="249" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="153" y="261" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
-        <text x="219" y="246" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif">CD</text>
+        <text x="120" y="36" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="186" y="40" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="WH" pointer-events="none">WH</text>
+        <text x="150" y="82" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#f5f0ff" font-family="Georgia,serif" data-plant="LU" pointer-events="none">LU</text>
+        <text x="71" y="91" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="RU" pointer-events="none">RU</text>
+        <text x="228" y="93" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#3a2000" font-family="Georgia,serif" data-plant="RU" pointer-events="none">RU</text>
+        <text x="84" y="126" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="221" y="122" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#7a7a5a" font-family="Georgia,serif" data-plant="BF" pointer-events="none">BF</text>
+        <text x="74" y="163" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif" data-plant="HG" pointer-events="none">HG</text>
+        <text x="229" y="161" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#2a3808" font-family="Georgia,serif" data-plant="HG" pointer-events="none">HG</text>
+        <text x="107" y="169" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#5a3020" font-family="Georgia,serif" data-plant="FP" pointer-events="none">FP</text>
+        <text x="197" y="171" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="#5a3020" font-family="Georgia,serif" data-plant="FP" pointer-events="none">FP</text>
+        <text x="152" y="197" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#5a3020" font-family="Georgia,serif" data-plant="FP" pointer-events="none">FP</text>
+        <text x="71" y="201" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="233" y="199" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0f8" font-family="Georgia,serif" data-plant="TP" pointer-events="none">TP</text>
+        <text x="118" y="232" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif" data-plant="SC" pointer-events="none">SC</text>
+        <text x="193" y="229" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#f5f0ff" font-family="Georgia,serif" data-plant="SC" pointer-events="none">SC</text>
+        <text x="84" y="249" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="153" y="261" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
+        <text x="219" y="246" text-anchor="middle" dominant-baseline="middle" font-size="7" fill="#6a7a6a" font-family="Georgia,serif" data-plant="CD" pointer-events="none">CD</text>
         <line x1="20" y1="292" x2="107" y2="292" stroke="#8a9a70" stroke-width="1.5"/>
         <line x1="20" y1="289" x2="20" y2="295" stroke="#8a9a70" stroke-width="1"/>
         <line x1="107" y1="289" x2="107" y2="295" stroke="#8a9a70" stroke-width="1"/>
@@ -769,15 +772,15 @@
         </div>
         <div class="bed-legend">
         <table>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="RU" loading="lazy"></td><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×4 · mid-back</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×4 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="HG" loading="lazy"></td><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid sides</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="FP" loading="lazy"></td><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP) <strong>— feature</strong></td><td class="lz">×8 · mid</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="SC" loading="lazy"></td><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×4 · front</td></tr>
-          <tr><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
+          <tr data-plant="WH"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_1174_8045.jpg" alt="WH" loading="lazy"></td><td><span class="sw" style="background:rgba(240,240,236,0.95);border-color:#b8b8a8"></span></td><td><em>Digitalis purpurea</em> 'Snow Thimble' (WH)</td><td class="lz">×5 · back</td></tr>
+          <tr data-plant="LU"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9092_20902.jpg" alt="LU" loading="lazy"></td><td><span class="sw" style="background:rgba(118,130,198,0.9)"></span></td><td><em>Lupinus polyphyllus</em> — clump (LU)</td><td class="lz">×5 · back</td></tr>
+          <tr data-plant="RU"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_834_22322.jpg" alt="RU" loading="lazy"></td><td><span class="sw" style="background:rgba(218,166,30,0.9)"></span></td><td><em>Rudbeckia triloba</em> (RU)</td><td class="lz">×4 · mid-back</td></tr>
+          <tr data-plant="BF"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_382_13447.jpg" alt="BF" loading="lazy"></td><td><span class="sw" style="background:rgba(235,235,215,0.9);border-color:#c0b898"></span></td><td><em>Ammi majus</em> (BF)</td><td class="lz">×4 · mid</td></tr>
+          <tr data-plant="HG"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_6159_17251.jpg" alt="HG" loading="lazy"></td><td><span class="sw" style="background:rgba(182,198,45,0.9)"></span></td><td><em>Agastache foeniculum</em> 'Golden Jubilee' (HG)</td><td class="lz">×4 · mid sides</td></tr>
+          <tr data-plant="FP"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_13284_22494.jpg" alt="FP" loading="lazy"></td><td><span class="sw" style="background:rgba(226,160,108,0.9)"></span></td><td><em>Digitalis purpurea</em> 'Dottie Peach' (FP) <strong>— feature</strong></td><td class="lz">×8 · mid</td></tr>
+          <tr data-plant="TP"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_9161_12295.jpg" alt="TP" loading="lazy"></td><td><span class="sw" style="background:rgba(194,156,218,0.9)"></span></td><td><em>Linaria purpurea</em> 'Canon Went' (TP)</td><td class="lz">×5 · sides</td></tr>
+          <tr data-plant="SC"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_257_21864.jpg" alt="SC" loading="lazy"></td><td><span class="sw" style="background:rgba(145,108,192,0.9)"></span></td><td><em>Scabiosa atropurpurea</em> (SC)</td><td class="lz">×4 · front</td></tr>
+          <tr data-plant="CD"><td class="thumb-cell"><img class="thumb" src="https://www.chilternseeds.co.uk/images/products/zoom/img_12375_17213.jpg" alt="CD" loading="lazy"></td><td><span class="sw" style="background:rgba(252,252,244,0.95);border-color:#c0c0a0"></span></td><td><em>Arctotis fastuosa</em> 'White' (CD)</td><td class="lz">×7 · front</td></tr>
         </table>
       </div>
       </div>
@@ -1871,6 +1874,41 @@
         return '<span class="h-icon ' + k + ' ' + (k === t ? 'h-active' : 'h-inactive') + '"' + extra + '></span>';
       }).join('') + '<span class="h-man-div"></span><span class="h-icon man h-man"></span>';
       heightCell.insertBefore(div, heightCell.firstChild);
+    });
+  })();
+
+  (function() {
+    function highlight(card, code) {
+      card.querySelectorAll('.bed-svg ellipse[data-plant]').forEach(function(el) {
+        el.style.opacity = el.dataset.plant === code ? '' : '0.15';
+      });
+      card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
+        tr.classList.toggle('plant-hl', tr.dataset.plant === code);
+      });
+    }
+    function clearHighlight(card) {
+      card.querySelectorAll('.bed-svg ellipse[data-plant]').forEach(function(el) {
+        el.style.opacity = '';
+      });
+      card.querySelectorAll('.bed-legend tr[data-plant]').forEach(function(tr) {
+        tr.classList.remove('plant-hl');
+      });
+    }
+    document.querySelectorAll('.bed-card').forEach(function(card) {
+      var svg = card.querySelector('.bed-svg');
+      if (!svg) return;
+      var cur = null;
+      svg.addEventListener('mouseover', function(e) {
+        var el = e.target.closest ? e.target.closest('[data-plant]') : null;
+        var code = el ? el.dataset.plant : null;
+        if (code === cur) return;
+        cur = code;
+        if (code) highlight(card, code); else clearHighlight(card);
+      });
+      svg.addEventListener('mouseleave', function() {
+        cur = null;
+        clearHighlight(card);
+      });
     });
   })();
 </script>
